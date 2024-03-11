@@ -1,0 +1,253 @@
+---
+title: "Essays in Causal Machine Learning"
+subtitle: "Research Proposal"
+author: "Federica Mascolo"
+institute: "University of St.Gallen"
+date: "March 12, 2024"
+format:
+  revealjs:
+    template-partials:
+      - title-slide.html
+css: [unisg.css, logo.css]
+logo: "HSG_Bildmarke_RGB.svg"
+---
+
+##  Three Projects {.center}
+::: {.incremental}
+- The Heterogeneous Effect of Active Labour Market Policies
+- Inequality-Adjusted Policy Tree
+- Clustered-Robust Causal Forests
+:::
+
+
+## Common aspects: {.center}
+::: {.incremental}
+- **Identification strategy**: Selection-on-observables
+    - CIA, CS, SUTVA, covariates exogeneity
+- **Estimand of interests**: ATEs, GATEs and IATEs
+- **Estimation**: Causal Machine Learning (Causal Forests and Policy Trees)
+- **Data**: Swiss administrative data on ALMPs 
+:::
+
+#  
+<hr class="section-separator">
+<h2 style="text-align: center;">The Heterogeneous Effect of Active Labour Market Policies</h2>
+<hr class="section-separator">
+
+## Motivation {.center} 
+::: {.incremental}
+- Understand the beneficiaries of different types of programs in Switzerland  
+- Provide valuable insights for program optimization
+:::
+
+. . .
+
+<h2 class="mt-2">This Paper</h2>
+
+::: {.incremental}
+- Investigate the effects of ALMPs on employment and earnings considering several time frames for the sample of Swiss+ and TW Permit
+- Estimate the causal effects using Modified Causal Forests (MCF) and Optimal Treatment Assignments using Policy Trees
+
+:::
+
+## Average Treatment Effects {.center} 
+::: {.incremental}
+![](ATE_monthly_combined2.svg){style="margin:auto; display:block;"}
+:::
+
+<!--
+|Column 1|Column 2|Column 3|
+|---|:-:|---:|
+|content|content|content|
+|content|content|content|
+-->
+
+## Group Average Treatment Effects {.center}
+::: {.incremental}
+![](gates_discr.svg){style="margin:auto; display:block;"}
+:::
+
+<!--
+## Group Average Treatment Effects {.center} 
+::: {.incremental}
+![](cont_gate.svg){style="margin:auto; display:block;"}
+:::
+--> 
+
+## Individualized Average Treatment Effects {.center} 
+::: {.incremental}
+![](iates_dens.svg){style="margin:auto; display:block;"}
+:::
+
+<!--
+## Policy Trees {.center}
+
+- Outcome of interest: Employment in the third year
+- Depth 4 Policy tree
+
+  :::{.incremental}
+    - **Unconstrained Policy Tree**: all the individuals are assigned to TEar.
+    - **Constrained Policy Tree**: shifts the allocations to NP and splits on past
+   earnings
+  :::
+
+:::{.incremental}
+- **Welfare**: 16 and 3 days more of work than the observed allocation
+:::
+-->
+
+## Conclusion {.center}
+
+::: {.incremental}
+
+- The heterogeneity analysis indicates that specific sub-groups of the population could benefit from different ALMPs:  
+  - explore potential improvements for better programme assignments
+  <!-- - Heterogeneity in an more homogenous population may suggest that skill-based characteristics are the drivers more than migration background -->
+
+:::
+
+<h2 class="mt-2"> Improvements </h2>
+
+::: {.incremental}
+- What drives the heterogeneity? BGATEs
+- How stable are the results? Robustness checks
+:::
+
+
+#  
+<hr class="section-separator">
+<h2 style="text-align: center;">Inequality-Adjusted Policy Tree</h2>
+<hr class="section-separator">
+
+
+## Motivation {.center}
+::: {.incremental}
+- **Policy Learning**: focuses on finding an optimal policy rule that maximizes the utilitarian welfare  
+   $$\small Q(\pi) =  \mathbb{E} [Y\left(\pi(X)\right)]$$
+
+- Defining welfare as a means of outcomes misses the distributional impacts of a policy allocation
+
+- Important if the policymaker is concerned about inequality 
+:::
+
+. . .
+
+<h2 class="mt-2"> Contribution </h2>
+
+::: {.incremental}
+- Integrate insights about policy learning and inequality (Kitagwa and Tetenov (2021), Kock and Preinerstorfer (2024)) into 
+ Zhou, Athey, and Wager (2023) algorithm 
+
+- Different from the literature which treats inequality within the fairness framework through penalties or constraints of the objective function (e.g. Frauen et al. (2023), Viviano and Bradic (2023))
+:::
+
+
+## This Paper {.center}
+
+::: {.incremental}
+
+- Adapt the objective function of the Policy-Tree algorithm of Zhou, Athey, and Wager (2023) and employ the Atkinson Index (Atkinson (1970)) as a Welfare measure to accommodate distributional consequencies of policy allocation
+- Simulate the assignments to ALMPs for Swiss unemployed individuals
+::: 
+
+## Intuition {.center}
+
+::: {.incremental}
+
+- The proposed recursive tree-search algorithm maximizes the estimated reward by iterating through all possible sample splits and treatment states
+for each subtree.
+    - Returns the associated treatment and total reward, the sum of potential outcomes in each sub-leaf
+:::
+
+. . .
+
+<!--
+- The split of the Policy Tree is based on covariates and cut points that max the sum of potential outcomes in each sub-leaf, returning the associated treatment and total reward 
+$$\small \textbf{Return} \left(\max_{j \in \{1, \ldots, d\}} \hat{\Gamma}_{ij}, \arg\max_{j \in \{1, \ldots, d\}} \hat{\Gamma}_{ij}\right) $$  -->
+
+- The **Atkinson Index** is a measure of inequality that depends on a parameter $\epsilon$, the individual outcome, and the mean outcome of the whole population:
+$$ \small A = 1 - \frac{1}{\mu}\left(\frac{1}{N} \sum_{i=1}^N y_i^{1-\varepsilon}\right)^{\frac{1}{1-\varepsilon}} $$
+
+- $\epsilon$ allows to express policy maker preferences towards inequality
+- $y_i$ and $\mu$ are within the leaf and overall population potential outcomes, same scores of original algorithm
+
+<!--
+::: {.incremental}
+
+- Start computing the mean under the observed treatment: $\mu$
+- Apply the tree search and return associated treatements and reward maximizes the Atkinson Index using the observed outcome mean 
+- Repeat the iterations using the updated values of $\mu$ after the split
+:::
+-->
+
+
+## Challenges {.center}
+::: {.incremental}
+- Better understanding of the results when introducing $\mu$ in the tree search
+- Accommodate budgetary constraints: not obvious extension
+- Computational complexity can be an issue
+- Technical decision on handling continuous variables...
+- Motivate better the welfare and policy tree choice
+:::
+
+
+#  
+<hr class="section-separator">
+<h2 style="text-align: center;">Cluster Robust Causal Forests</h2>
+<hr class="section-separator">
+
+## Motivation {.center}
+::: {.incremental}
+- Interest of empirical researchers in understanding cluster robust inference with classical econometrics and causal machine learning estimators
+- Chiang, Kato, Ma, and Sassaki (2021) provide Multiway Cluster Robust DML
+- Athey and Wager (2019) and Lechner (2018) adapted the Causal Forest packages to accommodate one-way clustered error settings
+  - Cluster-robust standard errors are computed differently and the statistical conditions for valid inference are not clear 
+:::
+
+## Causal Forests {.center}
+::: {.incremental}
+- Athey and Wager (2019): adapt the sampling and prediction procedure for the nuisance functions computation
+    - s.e. computed as deviation between the clustered average treatment effect and the average treatment effect
+- Lechner (2018): uses an alternative inference method useful for estimators that have a representation as weighted averages of the observed outcome
+    -  s.e. weights can be aggregated within clusters
+:::
+
+## This Paper {.center}
+::: {.incremental}
+
+- Investigates causal forests under clustered sampling environments  
+- Explore and adapt sampling or weighting procedure
+- Provide a formula or bootstrap procedure to compute the standard errors 
+:::
+
+. . .
+
+::: {.incremental}
+- Apply the adapted clustered standard errors to an empirical setting
+    - National Study of Learning Mindset
+
+:::
+
+  <!-- - Provide a variance estimator designed for causal forests able to accommodate clustering: or estimators that be seen as weighted estimators -->
+ <!--  or estimators that be seen as weighted estimators -->
+ <!-- what does it means? -->
+
+
+## Challenges {.center}
+::: {.incremental}
+- Understand the technicalities of the two estimators and try to provide a general framework
+- Understand how clustering changes the heterogeneity analysis
+
+
+:::
+
+#
+## Small recap {.center}
+::: {.incremental}
+- **Heterogeneous Effect of ALMPs**
+    - Investigate the effects of ALMPs on employment and earnings at different granularity levels 
+- **Inequality-Adjusted Policy Tree**
+    - Adapt the Policy-Tree objective function of Zhou, Athey, and Wager (2023) algorithm with Atkinson Index welfare measure to accommodate distributional consequencies of policy allocation
+- **Cluster Robust Causal Forests**
+    - Provide a variance estimator designed for causal forests able to accommodate clustering
+:::
