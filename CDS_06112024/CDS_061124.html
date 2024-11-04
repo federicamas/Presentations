@@ -368,12 +368,11 @@
 <li class="fragment"><p><strong>New methods:</strong></p>
 <ul>
 <li class="fragment">More reliable estimates</li>
-<li class="fragment">Uncover heterogeneity (and its drivers) beyond the average effect, program that is ineffective on average might still be beneficial for particular subgroups</li>
-<li class="fragment">Provide interpretable data-driven recommendations for improved allocations to programs</li>
+<li class="fragment">Uncover heterogeneity (and its drivers) beyond the average effect, programme that is ineffective on average might still be beneficial for particular subgroups</li>
+<li class="fragment">Provide interpretable data-driven recommendations for improved allocations to programmes</li>
 </ul></li>
 </ul>
 </div>
-<p>:::</p>
 
 <!--
 **Relevance:**
@@ -396,17 +395,14 @@ subgroups
     - Uncover heterogeneity (and its drivers) beyond the average effect, program that is ineffective on average might still be beneficial for particular subgroups
     - Provide interpretable data-driven recommendations for improved allocations to programs
 :::
+
+
+#  
+<hr class="section-separator">
+<h2 style="text-align: center;"> Setting up the scene </h2>
+<hr class="section-separator">
 -->
 </div>
-</section>
-<section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
-<hr class="section-separator">
-<h2 style="text-align: center;">
-Setting up the scene
-</h2>
-<hr class="section-separator">
 </section>
 <section id="data" class="slide level2 center">
 <h2>Data</h2>
@@ -417,8 +413,8 @@ Setting up the scene
 <div>
 <p><strong>Two samples</strong> analysis depending on migration background:</p>
 <ul>
-<li class="fragment"><strong>Permanent Residence Permit (PERM):</strong> Swiss and long term migrants</li>
-<li class="fragment"><strong>Temporary Residence Permit (TEMP):</strong> More recent migrants</li>
+<li class="fragment"><strong>Permanent Residence (PERM):</strong> Swiss and long term migrants</li>
+<li class="fragment"><strong>Temporary Residence (TEMP):</strong> More recent migrants</li>
 </ul>
 </div>
 </div>
@@ -428,7 +424,7 @@ Setting up the scene
 <div>
 <p><strong>Outcomes:</strong></p>
 <ul>
-<li class="fragment">Employment status and earnings during 36 months after program start (monthly and several aggregates) <!--
+<li class="fragment">Employment status and earnings during 36 months after programme start (monthly and several aggregates) <!--
 - For control group pseudo start dates are predicted based on sample of
 program participants
 --></li>
@@ -458,7 +454,7 @@ program participants
 </ul>
 </div>
 <div class="fragment">
-<p><strong>Estimation strategy</strong>: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment.</p>
+<p><strong>Identification strategy</strong>: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment.</p>
 
 <!--
 ## Identification {.center}
@@ -486,17 +482,17 @@ program participants
 <section id="estimation" class="slide level2 center">
 <h2>Estimation</h2>
 <div>
-<p><strong>Modified Causal Forests</strong> (Lechner and Marekova, 2024)</p>
+<p><strong>Modified Causal Forests</strong> (Lechner 2018)</p>
 <ul>
 <li class="fragment">Causal forest modified for estimation with observational data</li>
-<li class="fragment">Works particularly well under strong selection</li>
-<li class="fragment">Harmonized estimation and inference procedure, estimation of ATE, GATE and BGATE is obtained aggregating IATES</li>
+<li class="fragment">Works particularly well under strong selection (Lechner and Marekova, 2024)</li>
+<li class="fragment">Harmonized estimation and inference procedure, estimation of ATE, GATE and BGATE is obtained aggregating IATE</li>
 <li class="fragment">No functional form assumptions</li>
 </ul>
 </div>
-</section></section>
+</section>
 <section>
-<section id="section-1" class="title-slide slide level1 center">
+<section id="section" class="title-slide slide level1 center">
 <h1></h1>
 <hr class="section-separator">
 <h2 style="text-align: center;">
@@ -508,8 +504,8 @@ Results
 <h2>Average Treatment Effects</h2>
 <div class="fragment">
 <div>
-<p>Evolution of ATEs for employment and earnings in the 36 months after programme start</p>
-<p><img data-src="ATE_monthly_combined_new_names_1024.svg" style="display: block; margin: auto;;width:75.0%"></p>
+<p>Evolution of ATEs for earnings in the 36 months after programme start for Permanent Residents sample</p>
+<p><img data-src="earnings.svg" style="display: block; margin: auto;;width:65.0%"></p>
 </div>
 <!--
 Lock-in effect with subsequent recovery for all programs
@@ -523,7 +519,7 @@ Results qualitatively similar to previous findings for Switzerland
 <h2>Balanced Group average Treatment effects</h2>
 <div class="fragment">
 <div>
-<p>Difference BGATE - ATE of Wage Subsidy with respect to non- participants for Prmanent Residents sample.</p>
+<p>Difference BGATE - ATE of Wage Subsidy with respect to non- participants for Permanent Residents sample</p>
 <p><img data-src="bgatemate_6.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
 </div>
@@ -541,53 +537,8 @@ Results qualitatively similar to previous findings for Switzerland
 <div>
 <ul>
 <li class="fragment">Effect heterogeneity driven by <strong>education</strong>, <strong>origin</strong>, and <strong>labour market history</strong></li>
-<li class="fragment">Statistically insignificant results for the smaller sample of <strong>recent immigrants (TEMP)</strong></li>
 </ul>
 </div>
-
-<!--
-BGATE estimates the heterogeneity of effects within subgroups identi-
-fied by a policy variable.
-Compared to a GATE, it balances a set of pre-determined variables,
-which may confound effect heterogeneity. In this application, the balancing variables are chosen as the set of remaining pre-determined policy variables plus the three additional variables: age, marital status and canton of residence. For example, if significant effect heterogene-
-ity by gender is detected using GATEs, it raises the question of whether this variation stems from gender or correlated factors (e.g., education, marital status). However, if the BGATE also shows notable variation, indicating differing effects by gender even among individuals with identical balancing variables (i.e. same education level, same marital status etc.), it provides
-more compelling evidence of gender-driven differences
-
-The fig. illustrates the differences between BGATEs and ATEs in terms of cumulative earnings in the third year following the programme’s start, offering insights into which groups perform better or worse than the average in the PERM sample The results indicate that subgroups of the population with compulsory or secondary education benefit more from being assigned to a programme than individuals with a higher education level. The programmes’ effectiveness also differs according to the individuals’ place of origin.
-Individuals coming from outside of the European Union or Switzerland benefit more from being assigned to a programme. In contrast, Swiss individuals profit the least from participating in the WS programme. The fact that individuals from neighbouring countries, where a Swiss official language is spoken, profit less than other foreigners suggests that language proficiency
-may influence programme effectiveness.
-
-No heterogeneity for geneder or sector.  least beneficial for individuals at the upper end of the earnings distribution and individuals who were nearly always employed during the five years before becoming unemployed
-
--->
-<!--
-## Individualized Average Treatment Effects
-:::: {.columns}
-
-::: {.column width="50%"}
-### Densities 
-::: {.incremental}
-![](iates_dens.svg){.absolute top=200 left=0 width=50% height="300"}
-:::
-:::
-
-
-::: {.column width="50%"}
-### K-means Clustering
-::: {.incremental}
-
-- Cluster individuals based on the size of the IATES
-
-- **WS:** Most beneficial for older, non-Swiss nationals with relatively high earnings
-- **TC:** Young, higher-educated individuals benefit most; higher earnings but fewer months in employment
-- **BC and EP:** Young, female, low-educated, non-Swiss participants with lower earnings benefit most
-
-- Non-Swiss citizens benefit more than Swiss across all programmes
-:::
-:::
-
-::::
--->
 </div>
 </section>
 <section id="individualised-average-treatment-effects" class="slide level2 center">
@@ -595,15 +546,6 @@ No heterogeneity for geneder or sector.  least beneficial for individuals at the
 <div class="fragment">
 <div>
 <p><strong>Densities of the IATEs</strong> <img data-src="iates_dens.svg" style="display: block; margin: auto;;width:75.0%"></p>
-</div>
-</div>
-<div class="fragment">
-<p><strong>K-means clustering</strong>: Cluster individuals based on the size of the IATES</p>
-<div>
-<ul>
-<li class="fragment"><p>Individuals with different characteristics benefit from the different programms</p></li>
-<li class="fragment"><p>Non-Swiss citizens benefit more than Swiss across all programmes</p></li>
-</ul>
 </div>
 </div>
 </section>
@@ -626,11 +568,11 @@ No heterogeneity for geneder or sector.  least beneficial for individuals at the
 <tr class="header">
 <th>Policy</th>
 <th>Months</th>
-<th>NP</th>
-<th>WS</th>
-<th>BC</th>
-<th>TC</th>
-<th>EP</th>
+<th>NP %</th>
+<th>WS %</th>
+<th>BC %</th>
+<th>TC %</th>
+<th>EP %</th>
 </tr>
 </thead>
 <tbody>
@@ -718,15 +660,10 @@ No heterogeneity for geneder or sector.  least beneficial for individuals at the
 </tbody>
 </table>
 </div>
-<!--
-| Random                         | 9.02   | 43.13 | 26.39 | 18.79 | 6.25  | 5.45  |
-| Best-score                     | 9.15   | 52.94 | 28.01 | 2.04  | 11.01 | 6.01  |
-Expand assignments to WS programme, but if for budget constraint or policy considerations policy-makers necessitace the other programmes, deeper decision trees optimise the allocations.
--->
 </div>
 </section></section>
 <section>
-<section id="section-2" class="title-slide slide level1 center">
+<section id="section-1" class="title-slide slide level1 center">
 <h1></h1>
 <hr class="section-separator">
 <h2 style="text-align: center;">
@@ -741,22 +678,29 @@ Conclusions
 <ul>
 <li class="fragment"><strong>Key findings:</strong>
 <ul>
-<li class="fragment"><strong>Permanent Residents</strong>: Mixed effects on employment and earnings; only WS shows positive, significant effects.</li>
-<li class="fragment"><strong>Temporary Residents</strong>: Positive, significant effects for all programmes.</li>
+<li class="fragment"><strong>Permanent Residents</strong>: Mixed effects on employment and earnings; only WS shows positive, significant effects</li>
+<li class="fragment"><strong>Temporary Residents</strong>: Positive, significant effects for all programmes on the extensive margin</li>
 </ul></li>
 <li class="fragment"><strong>Heterogeneity:</strong>
 <ul>
-<li class="fragment">Individuals with lower education or origins outside Switzerland or EU benefit more from the programmes</li>
+<li class="fragment">Individuals with lower education, non-Swiss benefit more from the programmes</li>
 <li class="fragment">Driven by immigration background, education labour market history</li>
+<li class="fragment">Statistically insignificant results for the smaller sample of TEMP</li>
 </ul></li>
 <li class="fragment"><strong>Improved allocations:</strong>
 <ul>
-<li class="fragment">Expand the assignment to WS, or use deeper trees to improve the number of months into employment keeping also the other programmes</li>
+<li class="fragment">Increase assignments to WS for both PERM and TEMP samples.</li>
+<li class="fragment">Use deeper policy trees in PERM to extend employment duration while preserving all the programme</li>
 </ul></li>
 </ul>
 </div>
-
-<img src="HSG_Bildmarke_RGB.svg" class="slide-logo r-stretch"><div class="footer footer-default">
+<div>
+<div style="text-align: right; position: relative; width: 110%; top: -750px; right: 20px;">
+<p><img data-src="qrcode.svg" style="width:10.0%"></p>
+</div>
+</div>
+<p><img src="HSG_Bildmarke_RGB.svg" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
 </section></section>
