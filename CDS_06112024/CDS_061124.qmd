@@ -124,7 +124,7 @@ program participants
 
 - ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y_{i}^d - Y_{i}^{0}]$\vspace{.1cm}
 - BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
-- IATE $\,\,\implies \tau_{d} ( x_i ) := \mathbb{E}[ \,  Y_i^d - Y_i^{0} | X_i=x_i ]$ 
+- IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
 - Optimal Policy $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
 
 :::
