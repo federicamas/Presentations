@@ -164,7 +164,8 @@ program participants
 
 - Causal forest modified for estimation with observational data
 - Works particularly well under strong selection (Lechner and Marekova, 2024)
-- Harmonized estimation and inference procedure, estimation of ATE, GATE and BGATE is obtained aggregating IATE
+- Harmonized estimation and inference procedure
+<!-- estimation of ATE, GATE and BGATE is obtained aggregating IATE -->
 - No functional form assumptions
 
 :::
@@ -277,11 +278,13 @@ Investigate effectiveness of Switzerland’s active labor market policies
 
 
 - **Heterogeneity:**
-    - Individuals with lower education, non-Swiss benefit more from the programmes
+    - Individuals with lower education, non-Swiss benefit and weaker labour market history more from the programmes
+    <!--
     - Driven by immigration background, education labour market history
+    -->
     - Statistically insignificant results for the smaller sample of TEMP
 
-- **Improved allocations:**
+- **Simulated allocations:**
     - Increase assignments to WS for both PERM and TEMP samples.
     - Use deeper policy trees in PERM to extend employment duration while preserving all the programme 
 
