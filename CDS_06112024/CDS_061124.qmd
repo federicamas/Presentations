@@ -106,16 +106,16 @@ program participants
 
 **Estimands:**
 
-- **ATE**: Average treatment effect for a population of interest
-- **BGATE**: Average treatment effect for a larger group of interest balanced for a subgorup of the covariates
-- **IATE**: Average treatment effect for a unit with specific values of covariates
+- **ATE**: average treatment effect for a population of interest
+- **BGATE**: average treatment effect for a larger group of interest balanced for a subgorup of the covariates
+- **IATE**: average treatment effect for a unit with specific values of covariates
 - **Optimal Policy Rule**: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
 
 :::
 
 . . .
 
-**Identification strategy**: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment.
+**Identification strategy**: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment
 
 <!---->
 
