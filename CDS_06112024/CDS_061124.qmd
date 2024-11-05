@@ -7,7 +7,7 @@ format:
     template-partials:
       - title-slide.html
 css: [unisg.css, logo.css]
-logo: "HSG_Bildmarke_RGB.svg"
+logo: "SEW-HSG_Logo_EN_RGB.svg"
 ---
 
 
@@ -27,6 +27,7 @@ What happens if you get unemployed in Switzerland?
 - **Temporary Wage Subsidy (WS)**: Subsidy incentivizing individuals to temporarily accept low-paying regular jobs
 :::
 
+<!---->
 
 ## This paper  {.center}
 ::: {.incremental}
@@ -47,35 +48,8 @@ Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machin
     - Provide interpretable data-driven recommendations for improved allocations to programmes
 :::
 
+<!---->
 
-<!--
-**Relevance:**
-
-
-- More than half of all unemployed are assigned to a programme
-- Program that is ineffective on average might still be beneficial for particular
-subgroups
-- Similar system in many other countries
-
-## This paper  {.center}
-::: {.incremental}
-**Contributions:**
-
-- **New data:** Evaluation for a more recent time period
-
-- **New methods:**
-
-    - More reliable estimates
-    - Uncover heterogeneity (and its drivers) beyond the average effect, program that is ineffective on average might still be beneficial for particular subgroups
-    - Provide interpretable data-driven recommendations for improved allocations to programs
-:::
-
-
-#  
-<hr class="section-separator">
-<h2 style="text-align: center;"> Setting up the scene </h2>
-<hr class="section-separator">
---> 
 
 ## Data {.center}
 ::: {.incremental}
@@ -91,6 +65,8 @@ with individuals entering unemployment between 01/2014 and 06/2015
 - **Permanent Residence (PERM):** Swiss and long term migrants
 - **Temporary Residence (TEMP):** More recent migrants
 :::
+
+<!---->
 
 ## Data {.center}
 ::: {.incremental}
@@ -116,16 +92,24 @@ program participants
 
 :::
 
-## Econometrics {.center}
-::: {.incremental}
-
-
-**Target Estimands:**
-
+<!--
 - ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$\vspace{.1cm}
 - BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
 - IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
 - Optimal Policy $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+-->
+
+<!---->
+
+## Parameters of interest {.center}
+::: {.incremental}
+
+**Estimands:**
+
+- ATE: Average treatment effect for a population of interest
+- BGATE: Average treatment effect for a larger group of interest balanced for a subgorup of the covariates
+- IATE: Average treatment effect for a unit with specific values of many characteristic
+- Optimal Policy Rule: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
 
 :::
 
@@ -133,42 +117,33 @@ program participants
 
 **Identification strategy**: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment.
 
+<!---->
 
-<!--
-## Identification {.center}
+## Estimator {.center}
 ::: {.incremental}
-**Conditional independence assumption** 
 
-- We observe most of the information caseworkers observe at the point of assignment.
-- We condition on key confounders identified in the literature (e.g., Lechner, 2013; Caliendo, 2017).
-- We find no evidence for violations in a placebo analysis.
+**Modified Causal Forests (MCF)** (Lechner 2018, Lechner and Marekova, 2024)
+
+- Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection
+- Harmonized estimation and inference procedure
+- No functional form assumptions
+- Package freely available: https://github.com/MCFpy/mcf
+
 :::
 
 . . .
 
 ::: {.incremental}
 
-**Common support assumption**: Random forest to estimate propoensity scores and trimming procedure
+**Policy Trees** (Bodory, Mascolo and Lechner, 2024)
 
-**Stable Unit Treatment Value Assumption**: No spillover effects
-
-**Exogeneity of covariates**: Only pre-treatment covariates
-::: 
--->
-
-
-
-## Estimation {.center}
-::: {.incremental}
-**Modified Causal Forests** (Lechner 2018)
-
-- Causal forest modified for estimation with observational data
-- Works particularly well under strong selection (Lechner and Marekova, 2024)
-- Harmonized estimation and inference procedure
-<!-- estimation of ATE, GATE and BGATE is obtained aggregating IATE -->
-- No functional form assumptions
+- Decision tree designed to optimise treatment assignment policies
+- Multi-action policy learner algorithm based on Zhou, Athey and Wager (2023)
+- Implemented in the MCF package 
 
 :::
+
+<!---->
 
 #  
 <hr class="section-separator">
@@ -189,12 +164,8 @@ Evolution of ATEs for earnings in the 36 months after programme start for Perman
 ![](earnings.svg){width=65%  style="display: block; margin: auto;"}
 :::
 
-<!--
-Lock-in effect with subsequent recovery for all programs
-Temporary wage subsidy shows positive effect in the third year (+CHF 200 per month)
-Cumulative effects over 36 months mostly negative
-Results qualitatively similar to previous findings for Switzerland
--->
+
+<!---->
 
 ## Balanced Group average Treatment effects {.center}
 
@@ -208,6 +179,7 @@ participants for Permanent Residents sample
 ![](bgatemate_6.svg){width=75%  style="display: block; margin: auto;"}
 :::
 
+<!---->
 
 ## Balanced Group Average Treatment Effects {.center}
 
@@ -227,6 +199,7 @@ participants for Permanent Residents sample
 
 :::
 
+<!---->
 
 ## Individualised Average Treatment Effects{.center}
 
@@ -238,6 +211,8 @@ participants for Permanent Residents sample
 **Densities of the IATEs**
 ![](iates_dens.svg){width=75%   style="display: block; margin: auto;"}
 :::
+
+<!---->
 
 
 ## Policy Trees Allocations {.center}
@@ -262,15 +237,19 @@ Evaluate potential improvements by simulating ALMP assignments using policy tree
 
 :::
 
+<!---->
 
 #  
 <hr class="section-separator">
 <h2 style="text-align: center;"> Conclusions </h2>
 <hr class="section-separator">
 
-## Conclusions {.center}
+## 
+### Conclusions {.center}
+
+Investigate the effect of ALMPs in Switzerland
+
 ::: {.incremental}
-Investigate effectiveness of Switzerland’s active labor market policies
 
 - **Key findings:**
     - **Permanent Residents**: Mixed effects on employment and earnings; only WS shows positive, significant effects
@@ -278,20 +257,20 @@ Investigate effectiveness of Switzerland’s active labor market policies
 
 
 - **Heterogeneity:**
-    - Individuals with lower education, non-Swiss benefit and weaker labour market history more from the programmes
+    - Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes
     <!--
     - Driven by immigration background, education labour market history
     -->
     - Statistically insignificant results for the smaller sample of TEMP
 
 - **Simulated allocations:**
-    - Increase assignments to WS for both PERM and TEMP samples.
-    - Use deeper policy trees in PERM to extend employment duration while preserving all the programme 
+    - Increase assignments to WS for both PERM and TEMP samples
+    - Use deeper policy trees in PERM, if the all the programmes need to be maintained 
 
 :::
 
 ::: {.incremental}
-<div style="text-align: right; position: relative; width: 110%; top: -750px; right: 20px;">
+<div style="text-align: right; position: relative; width: 110%; top: -700px; right: 20px;">
 ![](qrcode.svg){width=10%}
 </div>
 :::

@@ -354,6 +354,7 @@
 <li class="fragment"><strong>Temporary Wage Subsidy (WS)</strong>: Subsidy incentivizing individuals to temporarily accept low-paying regular jobs</li>
 </ul>
 </div>
+<!---->
 </section>
 <section id="this-paper" class="slide level2 center">
 <h2>This paper</h2>
@@ -373,35 +374,7 @@
 </ul></li>
 </ul>
 </div>
-
-<!--
-**Relevance:**
-
-
-- More than half of all unemployed are assigned to a programme
-- Program that is ineffective on average might still be beneficial for particular
-subgroups
-- Similar system in many other countries
-
-## This paper  {.center}
-::: {.incremental}
-**Contributions:**
-
-- **New data:** Evaluation for a more recent time period
-
-- **New methods:**
-
-    - More reliable estimates
-    - Uncover heterogeneity (and its drivers) beyond the average effect, program that is ineffective on average might still be beneficial for particular subgroups
-    - Provide interpretable data-driven recommendations for improved allocations to programs
-:::
-
-
-#  
-<hr class="section-separator">
-<h2 style="text-align: center;"> Setting up the scene </h2>
-<hr class="section-separator">
--->
+<!---->
 </div>
 </section>
 <section id="data" class="slide level2 center">
@@ -417,6 +390,7 @@ subgroups
 <li class="fragment"><strong>Temporary Residence (TEMP):</strong> More recent migrants</li>
 </ul>
 </div>
+<!---->
 </div>
 </section>
 <section id="data-1" class="slide level2 center">
@@ -440,55 +414,52 @@ program participants
 <li class="fragment">Regional labor market characteristics</li>
 </ul>
 </div>
+<!--
+- ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$\vspace{.1cm}
+- BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
+- IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
+- Optimal Policy $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+-->
+<!---->
 </div>
 </section>
-<section id="econometrics" class="slide level2 center">
-<h2>Econometrics</h2>
+<section id="parameters-of-interest" class="slide level2 center">
+<h2>Parameters of interest</h2>
 <div>
-<p><strong>Target Estimands:</strong></p>
+<p><strong>Estimands:</strong></p>
 <ul>
-<li class="fragment">ATE <span class="math inline">\(\,\,\,\, \implies \tau_{d} := \mathbb{E}[ Y^d - Y^{0}]\)</span></li>
-<li class="fragment">BGATE <span class="math inline">\(\implies \tau_{d}^B(z) := \mathbb{E}\left[\mathbb{E}[ \, Y^d - Y^{0} \, | \, Z = z, W]\right]\)</span></li>
-<li class="fragment">IATE <span class="math inline">\(\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \, Y^d - Y^{0} | X = x ]\)</span></li>
-<li class="fragment">Optimal Policy <span class="math inline">\(\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)\)</span>, where <span class="math inline">\(Q(\pi) = \mathbb{E} [Y^{\pi(V)}]\)</span></li>
+<li class="fragment">ATE: Average treatment effect for a population of interest</li>
+<li class="fragment">BGATE: Average treatment effect for a larger group of interest balanced for a subgorup of the covariates</li>
+<li class="fragment">IATE: Average treatment effect for a unit with specific values of many characteristic</li>
+<li class="fragment">Optimal Policy Rule: a mapping from covariates to treatment which maximise the average outcome under the specific treatment</li>
 </ul>
 </div>
 <div class="fragment">
 <p><strong>Identification strategy</strong>: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment.</p>
-
-<!--
-## Identification {.center}
-::: {.incremental}
-**Conditional independence assumption** 
-
-- We observe most of the information caseworkers observe at the point of assignment.
-- We condition on key confounders identified in the literature (e.g., Lechner, 2013; Caliendo, 2017).
-- We find no evidence for violations in a placebo analysis.
-:::
-
-. . .
-
-::: {.incremental}
-
-**Common support assumption**: Random forest to estimate propoensity scores and trimming procedure
-
-**Stable Unit Treatment Value Assumption**: No spillover effects
-
-**Exogeneity of covariates**: Only pre-treatment covariates
-::: 
--->
+<!---->
 </div>
 </section>
-<section id="estimation" class="slide level2 center">
-<h2>Estimation</h2>
+<section id="estimator" class="slide level2 center">
+<h2>Estimator</h2>
 <div>
-<p><strong>Modified Causal Forests</strong> (Lechner 2018)</p>
+<p><strong>Modified Causal Forests (MCF)</strong> (Lechner 2018, Lechner and Marekova, 2024)</p>
 <ul>
-<li class="fragment">Causal forest modified for estimation with observational data</li>
-<li class="fragment">Works particularly well under strong selection (Lechner and Marekova, 2024)</li>
-<li class="fragment">Harmonized estimation and inference procedure <!-- estimation of ATE, GATE and BGATE is obtained aggregating IATE --></li>
+<li class="fragment">Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection</li>
+<li class="fragment">Harmonized estimation and inference procedure</li>
 <li class="fragment">No functional form assumptions</li>
+<li class="fragment">Package freely available: https://github.com/MCFpy/mcf</li>
 </ul>
+</div>
+<div class="fragment">
+<div>
+<p><strong>Policy Trees</strong> (Bodory, Mascolo and Lechner, 2024)</p>
+<ul>
+<li class="fragment">Decision tree designed to optimise treatment assignment policies</li>
+<li class="fragment">Multi-action policy learner algorithm based on Zhou, Athey and Wager (2023)</li>
+<li class="fragment">Implemented in the MCF package</li>
+</ul>
+</div>
+<!---->
 </div>
 </section>
 <section>
@@ -507,12 +478,7 @@ Results
 <p>Evolution of ATEs for earnings in the 36 months after programme start for Permanent Residents sample</p>
 <p><img data-src="earnings.svg" style="display: block; margin: auto;;width:65.0%"></p>
 </div>
-<!--
-Lock-in effect with subsequent recovery for all programs
-Temporary wage subsidy shows positive effect in the third year (+CHF 200 per month)
-Cumulative effects over 36 months mostly negative
-Results qualitatively similar to previous findings for Switzerland
--->
+<!---->
 </div>
 </section>
 <section id="balanced-group-average-treatment-effects" class="slide level2 center">
@@ -522,6 +488,7 @@ Results qualitatively similar to previous findings for Switzerland
 <p>Difference BGATE - ATE of Wage Subsidy with respect to non- participants for Permanent Residents sample</p>
 <p><img data-src="bgatemate_6.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
+<!---->
 </div>
 </section>
 <section id="balanced-group-average-treatment-effects-1" class="slide level2 center">
@@ -539,6 +506,7 @@ Results qualitatively similar to previous findings for Switzerland
 <li class="fragment">Effect heterogeneity driven by <strong>education</strong>, <strong>origin</strong>, and <strong>labour market history</strong></li>
 </ul>
 </div>
+<!---->
 </div>
 </section>
 <section id="individualised-average-treatment-effects" class="slide level2 center">
@@ -547,6 +515,7 @@ Results qualitatively similar to previous findings for Switzerland
 <div>
 <p><strong>Densities of the IATEs</strong> <img data-src="iates_dens.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
+<!---->
 </div>
 </section>
 <section id="policy-trees-allocations" class="slide level2 center">
@@ -660,6 +629,7 @@ Results qualitatively similar to previous findings for Switzerland
 </tbody>
 </table>
 </div>
+<!---->
 </div>
 </section></section>
 <section>
@@ -671,10 +641,11 @@ Conclusions
 </h2>
 <hr class="section-separator">
 </section>
-<section id="conclusions" class="slide level2 center">
-<h2>Conclusions</h2>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<h3 class="center" id="conclusions">Conclusions</h3>
+<p>Investigate the effect of ALMPs in Switzerland</p>
 <div>
-<p>Investigate effectiveness of Switzerland’s active labor market policies</p>
 <ul>
 <li class="fragment"><strong>Key findings:</strong>
 <ul>
@@ -683,24 +654,24 @@ Conclusions
 </ul></li>
 <li class="fragment"><strong>Heterogeneity:</strong>
 <ul>
-<li class="fragment">Individuals with lower education, non-Swiss benefit and weaker labour market history more from the programmes <!--
+<li class="fragment">Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes <!--
   - Driven by immigration background, education labour market history
   --></li>
 <li class="fragment">Statistically insignificant results for the smaller sample of TEMP</li>
 </ul></li>
 <li class="fragment"><strong>Simulated allocations:</strong>
 <ul>
-<li class="fragment">Increase assignments to WS for both PERM and TEMP samples.</li>
-<li class="fragment">Use deeper policy trees in PERM to extend employment duration while preserving all the programme</li>
+<li class="fragment">Increase assignments to WS for both PERM and TEMP samples</li>
+<li class="fragment">Use deeper policy trees in PERM, if the all the programmes need to be maintained</li>
 </ul></li>
 </ul>
 </div>
 <div>
-<div style="text-align: right; position: relative; width: 110%; top: -750px; right: 20px;">
+<div style="text-align: right; position: relative; width: 110%; top: -700px; right: 20px;">
 <p><img data-src="qrcode.svg" style="width:10.0%"></p>
 </div>
 </div>
-<p><img src="HSG_Bildmarke_RGB.svg" class="slide-logo"></p>
+<p><img src="SEW-HSG_Logo_EN_RGB.svg" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
