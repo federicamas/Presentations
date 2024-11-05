@@ -106,10 +106,10 @@ program participants
 
 **Estimands:**
 
-- ATE: Average treatment effect for a population of interest
-- BGATE: Average treatment effect for a larger group of interest balanced for a subgorup of the covariates
-- IATE: Average treatment effect for a unit with specific values of many characteristic
-- Optimal Policy Rule: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
+- **ATE**: Average treatment effect for a population of interest
+- **BGATE**: Average treatment effect for a larger group of interest balanced for a subgorup of the covariates
+- **IATE**: Average treatment effect for a unit with specific values of covariates
+- **Optimal Policy Rule**: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
 
 :::
 
