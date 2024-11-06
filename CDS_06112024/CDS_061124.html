@@ -368,7 +368,6 @@
 <li class="fragment"><p><strong>New data:</strong> Evaluation for a more recent time period</p></li>
 <li class="fragment"><p><strong>New methods:</strong></p>
 <ul>
-<li class="fragment">More reliable estimates</li>
 <li class="fragment">Uncover heterogeneity (and its drivers) beyond the average effect, programme that is ineffective on average might still be beneficial for particular subgroups</li>
 <li class="fragment">Provide interpretable data-driven recommendations for improved allocations to programmes</li>
 </ul></li>
@@ -442,11 +441,11 @@ program participants
 <section id="estimator" class="slide level2 center">
 <h2>Estimator</h2>
 <div>
-<p><strong>Modified Causal Forests (MCF)</strong> (Lechner 2018, Lechner and Marekova, 2024)</p>
+<p><strong>Modified Causal Forests (MCF)</strong> (Lechner 2018, Lechner and Mareckova, 2024)</p>
 <ul>
 <li class="fragment">Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection</li>
 <li class="fragment">Harmonized estimation and inference procedure</li>
-<li class="fragment">No functional form assumptions</li>
+<li class="fragment">Non-parametric estimator</li>
 <li class="fragment">Package freely available: https://github.com/MCFpy/mcf</li>
 </ul>
 </div>
@@ -485,7 +484,7 @@ Results
 <h2>Balanced Group average Treatment effects</h2>
 <div class="fragment">
 <div>
-<p>Difference BGATE - ATE of Wage Subsidy with respect to non- participants for Permanent Residents sample</p>
+<p>Difference BGATE - ATE of Wage Subsidy with respect to non- participants for earnings in the third year after the programme start for Permanent Residents sample</p>
 <p><img data-src="bgatemate_6.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
 <!---->
@@ -513,7 +512,8 @@ Results
 <h2>Individualised Average Treatment Effects</h2>
 <div class="fragment">
 <div>
-<p><strong>Densities of the IATEs</strong> <img data-src="iates_dens.svg" style="display: block; margin: auto;;width:75.0%"></p>
+<p><strong>Densities of the IATEs</strong> for earnings in the third year after the programmes start for Permanent Residents sample</p>
+<p><img data-src="iates_dens.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
 <!---->
 </div>

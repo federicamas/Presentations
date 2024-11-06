@@ -43,7 +43,6 @@ Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machin
 
 - **New methods:**
 
-    - More reliable estimates
     - Uncover heterogeneity (and its drivers) beyond the average effect, programme that is ineffective on average might still be beneficial for particular subgroups
     - Provide interpretable data-driven recommendations for improved allocations to programmes
 :::
@@ -122,11 +121,11 @@ program participants
 ## Estimator {.center}
 ::: {.incremental}
 
-**Modified Causal Forests (MCF)** (Lechner 2018, Lechner and Marekova, 2024)
+**Modified Causal Forests (MCF)** (Lechner 2018, Lechner and Mareckova, 2024)
 
 - Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection
 - Harmonized estimation and inference procedure
-- No functional form assumptions
+- Non-parametric estimator
 - Package freely available: https://github.com/MCFpy/mcf
 
 :::
@@ -173,7 +172,7 @@ Evolution of ATEs for earnings in the 36 months after programme start for Perman
 
 ::: {.incremental}
 Difference BGATE - ATE of Wage Subsidy with respect to non-
-participants for Permanent Residents sample
+participants for earnings in the third year after the programme start for Permanent Residents sample 
 
 
 ![](bgatemate_6.svg){width=75%  style="display: block; margin: auto;"}
@@ -209,6 +208,8 @@ participants for Permanent Residents sample
 
 
 **Densities of the IATEs**
+for earnings in the third year after the programmes start for Permanent Residents sample 
+
 ![](iates_dens.svg){width=75%   style="display: block; margin: auto;"}
 :::
 
