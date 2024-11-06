@@ -208,7 +208,7 @@ participants for earnings in the third year after the programme start for Perman
 
 
 **Densities of the IATEs**
-for earnings in the third year after the programmes start for Permanent Residents sample 
+for earnings and employment in the third year after the programmes start for Permanent Residents sample 
 
 ![](iates_dens.svg){width=75%   style="display: block; margin: auto;"}
 :::
