@@ -47,6 +47,35 @@ Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machin
     - Provide interpretable data-driven recommendations for improved allocations to programmes
 :::
 
+
+## Literature {.center}
+::: {.incremental}
+**Meta studies**: (e.g. Card, Kluve and Weber, 2018) 
+  
+- Large variation across countries, types of programmes, and groups of unemployed  
+:::
+
+. . .
+
+::: {.incremental}
+**Switzerland**: (Gerfin and Lechenr, 2002; Lalive, Van Ours, and Zweimüller, 2008) 
+
+- Positive effects for wage subsidies  
+- Negative effects for employment programmes  
+- Mixed results for training courses  
+:::
+
+
+. . .
+
+::: {.incremental}
+**Causal ML and ALMPs**: (Cockx, Lechner and Bollens, 2023; Knaus, Lechner, Strittmatter, 2022)
+
+- Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications  
+:::
+
+
+
 <!---->
 
 
@@ -92,29 +121,66 @@ program participants
 :::
 
 <!--
-- ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$\vspace{.1cm}
-- BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
-- IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
-- Optimal Policy $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+ **ATE**: average treatment effect for a population of interest
+- **BGATE**: average treatment effect for a larger group of interest balanced for a subgorup of the covariates
+- **IATE**: average treatment effect for a unit with specific values of covariates
+- **Optimal Policy Rule**: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
 -->
 
 <!---->
 
 ## Parameters of interest {.center}
 ::: {.incremental}
+**Treatment Evaluation**
 
-**Estimands:**
-
-- **ATE**: average treatment effect for a population of interest
-- **BGATE**: average treatment effect for a larger group of interest balanced for a subgorup of the covariates
-- **IATE**: average treatment effect for a unit with specific values of covariates
-- **Optimal Policy Rule**: a mapping from covariates to treatment which maximise the average outcome under the specific treatment
-
+- ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$\vspace{.1cm}
+- BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
+- IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
 :::
 
 . . .
 
-**Identification strategy**: selection-on-observables, we observe most of the information caseworkers observe at the point of assignment
+Notation
+
+- $Y^d, d \in  \{0,\dots ,4\}$: Potential outcomes      
+- $Z$: Covariates for which we want to assess heterogeneity
+- $W$: Covariates used to balance
+- $X$: All covariates (includes $Z$ and $W$)
+
+
+
+<!---->
+
+## Parameters of interest {.center}
+::: {.incremental}
+**Treatment Recommendation**
+
+- Optimal Policy rule $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+:::
+. . .
+
+Notation
+
+- $V$ Policy variables, subset of the $X$ covariates    
+- $\pi(V)$ Policy rule for conditional treatment choice 
+- $Y^{\pi(V)}]$ Potential outcome under policy
+- $Q(\pi)$ Value function, average potential outcome under the policy
+
+
+
+## Indentification {.center}
+
+::: {.incremental}
+
+- **Conditional independence assumption**
+    - Control for most of the **information caseworkers observe** at the point of the assignment
+    - Condition on **key confounders** identified in the literature
+    - **Placebo analysis**: no evidence for violations
+
+- **Common support assumption**: exclude observations outside support
+- **Stable unit treatment value assumption**: no-spillover effects
+- **Exogeneity of covariates**: only pre-treatment covariates
+:::
 
 <!---->
 
@@ -126,7 +192,7 @@ program participants
 - Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection
 - Harmonized estimation and inference procedure
 - Non-parametric estimator
-- Package freely available: https://github.com/MCFpy/mcf
+- Package freely available on Github, MCFpy
 
 :::
 
@@ -171,8 +237,7 @@ Evolution of ATEs for earnings in the 36 months after programme start for Perman
 . . .
 
 ::: {.incremental}
-Difference BGATE - ATE of Wage Subsidy with respect to non-
-participants for earnings in the third year after the programme start for Permanent Residents sample 
+Difference BGATE - ATE of **Wage Subsidy** with respect to non-participants for earnings in the third year after the programme start for Permanent Residents sample 
 
 
 ![](bgatemate_6.svg){width=75%  style="display: block; margin: auto;"}
@@ -181,12 +246,13 @@ participants for earnings in the third year after the programme start for Perman
 <!---->
 
 ## Balanced Group Average Treatment Effects {.center}
+Patterns are the same for the other programmes, with some differences:
 
 ::: {.incremental}
 
-- **BC**: More pronounced effects across earnings deciles
-- **TC**: No significant heterogeneity related to education or earnings
-- **EP**: More beneficial for women than men; no significant heterogeneity with respect to education
+- **Basic Course**: More pronounced effects across earnings deciles
+- **Training Course**: No significant heterogeneity with respect to education and earnings
+- **Employment Programme**: More beneficial for women than men, no significant heterogeneity with respect to education
 
 :::
 
@@ -211,10 +277,42 @@ participants for earnings in the third year after the programme start for Perman
 for earnings and employment in the third year after the programmes start for Permanent Residents sample 
 
 ![](iates_dens.svg){width=75%   style="display: block; margin: auto;"}
+
+- **K-means clustering**: understand the different sub-groups based on covariates
+- **Policy Trees**: improve the allocation mechanism
 :::
 
 <!---->
 
+## K-means clustering {.center}
+::: {.incremental}
+- Group indivduals based on the size of their IATEs
+- K-means clustering (Arthur and Vassilvitskii, 2007) is an unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster
+:::
+
+. . .
+
+Clusters that show greatest benefit: 
+
+::: {.incremental}
+- **Wage Subsidy**: older individuals with relatively high earnings
+- **Training Course**: young individuals with higher levels of education and higher earnings 
+- **Basic Course** and **Employment Programme**: young, female participants with low education levels,  and lower earnings
+
+- Individuals with **non-Swiss nationality** benefit more, from all the programmes
+:::
+
+<!---->
+
+## Policy Learning {.center}
+::: {.incremental}
+- Simulate programme assignments to assess potential improvements, measuring gains in average months of employment 
+- Compare simulated assignments to actual programme allocations and their corresponding average employment outcomes
+- **Policy Tree** : algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment
+:::
+
+
+<!---->
 
 ## Policy Trees Allocations {.center}
 
@@ -222,7 +320,6 @@ for earnings and employment in the third year after the programmes start for Per
 
 
 ::: {.incremental}
-Evaluate potential improvements by simulating ALMP assignments using policy trees
 
 | Policy                         | Months | NP %  | WS   %  | BC   % | TC  % | EP  %  | 
 |--------------------------------|--------|-------|-------|-------|-------|-------|
@@ -231,7 +328,7 @@ Evaluate potential improvements by simulating ALMP assignments using policy tree
 | &nbsp;&nbsp; Depth-3           | 9.07   | 67.28 | 23.12 | 0.00  | 4.78  | 4.82  |
 | &nbsp;&nbsp; Depth-4           | 9.06   | 64.67 | 21.92 | 2.08  | 7.11  | 4.22  |
 | **Sequential Deeper Trees**    |        |       |       |       |       |       |
-| &nbsp;&nbsp; Depth-4 +3       | 9.09   | 63.79 | 21.26 | 2.18  | 7.54  | 5.23  |
+| &nbsp;&nbsp; Depth-4 +3        | 9.09   | 63.79 | 21.26 | 2.18  | 7.54  | 5.23  |
 | **Additional Scenarios Depth-3** |      |       |       |       |       |       |
 | &nbsp;&nbsp; Double share of WS | 9.24   | 49.07 | 50.93 | 0.00  | 0.00  | 0.00  |
 | &nbsp;&nbsp; Triple share of WS | 9.39   | 23.17 | 74.62 | 0.00  | 0.00  | 2.22  |
@@ -252,7 +349,7 @@ Investigate the effect of ALMPs in Switzerland
 
 ::: {.incremental}
 
-- **Key findings:**
+- **Average Treatment effects:**
     - **Permanent Residents**: Mixed effects on employment and earnings; only WS shows positive, significant effects
     - **Temporary Residents**: Positive, significant effects for all programmes on the extensive margin
 
@@ -262,11 +359,11 @@ Investigate the effect of ALMPs in Switzerland
     <!--
     - Driven by immigration background, education labour market history
     -->
-    - Statistically insignificant results for the smaller sample of TEMP
+    - Statistically insignificant results for the smaller sample of Temporary Residents
 
 - **Simulated allocations:**
-    - Increase assignments to WS for both PERM and TEMP samples
-    - Use deeper policy trees in PERM, if the all the programmes need to be maintained 
+    - Increase assignments to WS for both samples
+    - Use deeper policy trees in Permanent Residents, if the all the programmes need to be maintained 
 
 :::
 
