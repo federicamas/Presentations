@@ -373,38 +373,33 @@
 </ul></li>
 </ul>
 </div>
-</div>
-</section>
-<section id="literature" class="slide level2 center">
-<h2>Literature</h2>
-<div>
-<p><strong>Meta studies</strong>: (e.g.&nbsp;Card, Kluve and Weber, 2018)</p>
-<ul>
-<li class="fragment">Large variation across countries, types of programmes, and groups of unemployed<br>
-</li>
-</ul>
-</div>
-<div class="fragment">
-<div>
-<p><strong>Switzerland</strong>: (Gerfin and Lechenr, 2002; Lalive, Van Ours, and Zweimüller, 2008)</p>
-<ul>
-<li class="fragment">Positive effects for wage subsidies<br>
-</li>
-<li class="fragment">Negative effects for employment programmes<br>
-</li>
-<li class="fragment">Mixed results for training courses<br>
-</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<div>
-<p><strong>Causal ML and ALMPs</strong>: (Cockx, Lechner and Bollens, 2023; Knaus, Lechner, Strittmatter, 2022)</p>
-<ul>
-<li class="fragment">Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications<br>
-</li>
-</ul>
-</div>
+<!--
+## Literature {.center}
+::: {.incremental}
+**Meta studies**: (e.g. Card, Kluve and Weber, 2018) 
+  
+- Large variation across countries, types of programmes, and groups of unemployed  
+:::
+
+. . .
+
+::: {.incremental}
+**Switzerland**: (Gerfin and Lechenr, 2002; Lalive, Van Ours, and Zweimüller, 2008) 
+
+- Positive effects for wage subsidies  
+- Negative effects for employment programmes  
+- Mixed results for training courses  
+:::
+
+
+. . .
+
+::: {.incremental}
+**Causal ML and ALMPs**: (Cockx, Lechner and Bollens, 2023; Knaus, Lechner, Strittmatter, 2022)
+
+- Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications  
+:::
+-->
 <!---->
 </div>
 </section>
@@ -459,12 +454,22 @@ program participants
 <div>
 <p><strong>Treatment Evaluation</strong></p>
 <ul>
-<li class="fragment">ATE <span class="math inline">\(\,\,\,\, \implies \tau_{d} := \mathbb{E}[ Y^d - Y^{0}]\)</span></li>
-<li class="fragment">BGATE <span class="math inline">\(\implies \tau_{d}^B(z) := \mathbb{E}\left[\mathbb{E}[ \, Y^d - Y^{0} \, | \, Z = z, W]\right]\)</span></li>
-<li class="fragment">IATE <span class="math inline">\(\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \, Y^d - Y^{0} | X = x ]\)</span></li>
+<li class="fragment"><strong>ATE</strong> <span class="math inline">\(\,\,\,\, \implies \tau_{d} := \mathbb{E}[ Y^d - Y^{0}]\)</span>
+<ul>
+<li class="fragment">average treatment effect for the whole population</li>
+</ul></li>
+<li class="fragment"><strong>BGATE</strong> <span class="math inline">\(\implies \tau_{d}^B(z) := \mathbb{E}\left[\mathbb{E}[ \, Y^d - Y^{0} \, | \, Z = z, W]\right]\)</span>
+<ul>
+<li class="fragment">average treatment effect for a larger group of interest balanced for a subgorup of the covariates</li>
+</ul></li>
+<li class="fragment"><strong>IATE</strong> <span class="math inline">\(\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \, Y^d - Y^{0} | X = x ]\)</span>
+<ul>
+<li class="fragment">average treatment effect for a unit with specific values of covariates</li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
+<div style="font-size: 0.7em;">
 <p>Notation</p>
 <ul>
 <li><span class="math inline">\(Y^d, d \in \{0,\dots ,4\}\)</span>: Potential outcomes<br>
@@ -475,16 +480,20 @@ program participants
 </ul>
 <!---->
 </div>
-</section>
+</div></section>
 <section id="parameters-of-interest-1" class="slide level2 center">
 <h2>Parameters of interest</h2>
 <div>
 <p><strong>Treatment Recommendation</strong></p>
 <ul>
-<li class="fragment">Optimal Policy rule <span class="math inline">\(\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)\)</span>, where <span class="math inline">\(Q(\pi) = \mathbb{E} [Y^{\pi(V)}]\)</span></li>
+<li class="fragment"><strong>Optimal Policy rule</strong> <span class="math inline">\(\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)\)</span>, where <span class="math inline">\(Q(\pi) = \mathbb{E} [Y^{\pi(V)}]\)</span>
+<ul>
+<li class="fragment">mapping from covariates to treatment which maximise the average outcome under the specific treatment</li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
+<div style="font-size: 0.7em;">
 <p>Notation</p>
 <ul>
 <li><span class="math inline">\(V\)</span> Policy variables, subset of the <span class="math inline">\(X\)</span> covariates<br>
@@ -494,7 +503,7 @@ program participants
 <li><span class="math inline">\(Q(\pi)\)</span> Value function, average potential outcome under the policy</li>
 </ul>
 </div>
-</section>
+</div></section>
 <section id="indentification" class="slide level2 center">
 <h2>Indentification</h2>
 <div>
@@ -622,9 +631,9 @@ Results
 <h2>Policy Learning</h2>
 <div>
 <ul>
-<li class="fragment">Simulate programme assignments to assess potential improvements, measuring gains in average months of employment</li>
-<li class="fragment">Compare simulated assignments to actual programme allocations and their corresponding average employment outcomes</li>
-<li class="fragment"><strong>Policy Tree</strong> : algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment</li>
+<li class="fragment"><strong>Simulate programme assignments</strong> to assess potential improvements, measuring gains in average months of employment</li>
+<li class="fragment"><strong>Compare simulated assignments</strong> to actual programme allocations and their corresponding average employment outcomes</li>
+<li class="fragment"><strong>Policy Tree</strong>: algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment</li>
 </ul>
 </div>
 <!---->
@@ -757,12 +766,12 @@ Conclusions
 <p>Investigate the effect of ALMPs in Switzerland</p>
 <div>
 <ul>
-<li class="fragment"><strong>Average Treatment effects:</strong>
+<li class="fragment"><strong>Average Effects:</strong>
 <ul>
 <li class="fragment"><strong>Permanent Residents</strong>: Mixed effects on employment and earnings; only WS shows positive, significant effects</li>
 <li class="fragment"><strong>Temporary Residents</strong>: Positive, significant effects for all programmes on the extensive margin</li>
 </ul></li>
-<li class="fragment"><strong>Heterogeneity:</strong>
+<li class="fragment"><strong>Heterogeneous Effects:</strong>
 <ul>
 <li class="fragment">Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes <!--
   - Driven by immigration background, education labour market history
@@ -781,9 +790,51 @@ Conclusions
 <p><img data-src="qrcode.svg" style="width:10.0%"></p>
 </div>
 </div>
+<!---->
+</section></section>
+<section>
+<section id="section-3" class="title-slide slide level1 center">
+<h1></h1>
+<hr class="section-separator">
+<h2 style="text-align: center;">
+Background
+</h2>
+<hr class="section-separator">
+</section>
+<section id="literature" class="slide level2 center">
+<h2>Literature</h2>
+<div>
+<p><strong>Meta studies</strong>: (e.g.&nbsp;Card, Kluve and Weber, 2018)</p>
+<ul>
+<li class="fragment">Large variation across countries, types of programmes, and groups of unemployed<br>
+</li>
+</ul>
+</div>
+<div class="fragment">
+<div>
+<p><strong>Switzerland</strong>: (Gerfin and Lechenr, 2002; Lalive, Van Ours, and Zweimüller, 2008)</p>
+<ul>
+<li class="fragment">Positive effects for wage subsidies<br>
+</li>
+<li class="fragment">Negative effects for employment programmes<br>
+</li>
+<li class="fragment">Mixed results for training courses<br>
+</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<div>
+<p><strong>Causal ML and ALMPs</strong>: (Cockx, Lechner and Bollens, 2023; Knaus, Lechner, Strittmatter, 2022)</p>
+<ul>
+<li class="fragment">Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications<br>
+</li>
+</ul>
+</div>
 <p><img src="SEW-HSG_Logo_EN_RGB.svg" class="slide-logo"></p>
 <div class="footer footer-default">
 
+</div>
 </div>
 </section></section>
     </div>

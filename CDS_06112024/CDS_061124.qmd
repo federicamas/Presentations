@@ -47,7 +47,7 @@ Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machin
     - Provide interpretable data-driven recommendations for improved allocations to programmes
 :::
 
-
+<!--
 ## Literature {.center}
 ::: {.incremental}
 **Meta studies**: (e.g. Card, Kluve and Weber, 2018) 
@@ -73,7 +73,7 @@ Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machin
 
 - Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications  
 :::
-
+-->
 
 
 <!---->
@@ -133,13 +133,17 @@ program participants
 ::: {.incremental}
 **Treatment Evaluation**
 
-- ATE $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$\vspace{.1cm}
-- BGATE $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$\vspace{.1cm}
-- IATE $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$ 
+- **ATE** $\,\,\,\, \implies \tau_{d} :=  \mathbb{E}[ Y^d - Y^{0}]$
+   - average treatment effect for the whole population
+- **BGATE** $\implies \tau_{d}^B(z) :=  \mathbb{E}\left[\mathbb{E}[ \,  Y^d - Y^{0} \, | \,  Z = z, W]\right]$ 
+    - average treatment effect for a larger group of interest balanced for a subgorup of the covariates
+- **IATE** $\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \,  Y^d - Y^{0} | X = x ]$
+   - average treatment effect for a unit with specific values of covariates
 :::
 
 . . .
 
+<div style="font-size: 0.7em;">
 Notation
 
 - $Y^d, d \in  \{0,\dots ,4\}$: Potential outcomes      
@@ -155,10 +159,12 @@ Notation
 ::: {.incremental}
 **Treatment Recommendation**
 
-- Optimal Policy rule $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+- **Optimal Policy rule** $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+   - mapping from covariates to treatment which maximise the average outcome under the specific treatment
 :::
 . . .
 
+<div style="font-size: 0.7em;">
 Notation
 
 - $V$ Policy variables, subset of the $X$ covariates    
@@ -306,9 +312,9 @@ Clusters that show greatest benefit:
 
 ## Policy Learning {.center}
 ::: {.incremental}
-- Simulate programme assignments to assess potential improvements, measuring gains in average months of employment 
-- Compare simulated assignments to actual programme allocations and their corresponding average employment outcomes
-- **Policy Tree** : algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment
+- **Simulate programme assignments** to assess potential improvements, measuring gains in average months of employment 
+- **Compare simulated assignments** to actual programme allocations and their corresponding average employment outcomes
+- **Policy Tree**: algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment
 :::
 
 
@@ -349,12 +355,12 @@ Investigate the effect of ALMPs in Switzerland
 
 ::: {.incremental}
 
-- **Average Treatment effects:**
+- **Average Effects:**
     - **Permanent Residents**: Mixed effects on employment and earnings; only WS shows positive, significant effects
     - **Temporary Residents**: Positive, significant effects for all programmes on the extensive margin
 
 
-- **Heterogeneity:**
+- **Heterogeneous Effects:**
     - Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes
     <!--
     - Driven by immigration background, education labour market history
@@ -372,3 +378,37 @@ Investigate the effect of ALMPs in Switzerland
 ![](qrcode.svg){width=10%}
 </div>
 :::
+
+<!---->
+
+#  
+<hr class="section-separator">
+<h2 style="text-align: center;"> Background </h2>
+<hr class="section-separator">
+
+## Literature {.center}
+::: {.incremental}
+**Meta studies**: (e.g. Card, Kluve and Weber, 2018) 
+  
+- Large variation across countries, types of programmes, and groups of unemployed  
+:::
+
+. . .
+
+::: {.incremental}
+**Switzerland**: (Gerfin and Lechenr, 2002; Lalive, Van Ours, and Zweimüller, 2008) 
+
+- Positive effects for wage subsidies  
+- Negative effects for employment programmes  
+- Mixed results for training courses  
+:::
+
+
+. . .
+
+::: {.incremental}
+**Causal ML and ALMPs**: (Cockx, Lechner and Bollens, 2023; Knaus, Lechner, Strittmatter, 2022)
+
+- Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications  
+:::
+
