@@ -141,7 +141,7 @@ program participants
    - average treatment effect for a unit with specific values of covariates
 :::
 
-. . .
+
 
 <div style="font-size: 0.7em;">
 Notation
@@ -159,10 +159,10 @@ Notation
 ::: {.incremental}
 **Treatment Recommendation**
 
-- **Optimal Policy rule** $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
+- **Optimal Assignment rule** $\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)$, where  $Q(\pi) =  \mathbb{E} [Y^{\pi(V)}]$
    - mapping from covariates to treatment which maximise the average outcome under the specific treatment
 :::
-. . .
+
 
 <div style="font-size: 0.7em;">
 Notation
@@ -198,7 +198,7 @@ Notation
 - Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection
 - Harmonized estimation and inference procedure
 - Non-parametric estimator
-- Package freely available on Github, MCFpy
+
 
 :::
 
@@ -208,9 +208,9 @@ Notation
 
 **Policy Trees** (Bodory, Mascolo and Lechner, 2024)
 
-- Decision tree designed to optimise treatment assignment policies
-- Multi-action policy learner algorithm based on Zhou, Athey and Wager (2023)
-- Implemented in the MCF package 
+- Decision tree designed to optimise treatment assignment policies (based on Zhou, Athey and Wager (2023))
+- Algorithm that conducts an exhaustive and recursive search over the variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment
+- Both implemented in the MCF python package 
 
 :::
 
@@ -243,7 +243,7 @@ Evolution of ATEs for earnings in the 36 months after programme start for Perman
 . . .
 
 ::: {.incremental}
-Difference BGATE - ATE of **Wage Subsidy** with respect to non-participants for earnings in the third year after the programme start for Permanent Residents sample 
+Difference BGATE - ATE of **Wage Subsidy** for earnings in the third year after the programme start for Permanent Residents sample 
 
 
 ![](bgatemate_6.svg){width=75%  style="display: block; margin: auto;"}
@@ -262,15 +262,30 @@ Patterns are the same for the other programmes, with some differences:
 
 :::
 
+
+
+## Balanced Group Average Treatment Effects {.center}
+::: {.incremental}
+
+| Programme | Education | Labour history | Past earnings | Origin |
+|-----------|--------|-------|-------|-------|
+| **WS**    |  Y    |    Y    |  Y  |    Y  | 
+| **BC**    |  Y      |  Y    |  Y     |  Y  | 
+| **TC**    |  N      |  Y    |  N     |  Y  | 
+| **EP**    |  N     |   Y    |  Y     |  Y |
+:::
+
 . . .
 
 ::: {.incremental}
-
-- Effect heterogeneity driven by **education**, **origin**, and **labour market history**
-
+- **Labour market history** and **origin** drive heterogeneity across all programmes
+- Significant effects for **education** suggest that, even with same skills, individuals of non-Swiss nationality benefit more from the programmes
 :::
 
-<!---->
+
+
+<!--- Effect heterogeneity driven by **education**, **origin**, and **labour market history**
+-->
 
 ## Individualised Average Treatment Effects{.center}
 
@@ -292,13 +307,13 @@ for earnings and employment in the third year after the programmes start for Per
 
 ## K-means clustering {.center}
 ::: {.incremental}
-- Group indivduals based on the size of their IATEs
-- K-means clustering (Arthur and Vassilvitskii, 2007) is an unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster
+- Unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster (Arthur and Vassilvitskii, 2007)
+- Clusters based on the size of their IATEs 
 :::
 
 . . .
 
-Clusters that show greatest benefit: 
+Clusters with larger IATEs, by programme, include: 
 
 ::: {.incremental}
 - **Wage Subsidy**: older individuals with relatively high earnings
@@ -310,12 +325,19 @@ Clusters that show greatest benefit:
 
 <!---->
 
-## Policy Learning {.center}
+## Policy Trees {.center}
 ::: {.incremental}
-- **Simulate programme assignments** to assess potential improvements, measuring gains in average months of employment 
-- **Compare simulated assignments** to actual programme allocations and their corresponding average employment outcomes
-- **Policy Tree**: algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment
+- **Simulate programme assignments** to assess potential improvements with respect to observed and random allocations of unemployed
+- **Evaluate simulated assignments** measuring the gains in the average months of employment
 :::
+. . .
+
+
+::: {.incremental}
+- **Policy Variables**: the same variables used for the heterogeneity analysis
+:::
+
+
 
 
 <!---->
@@ -412,3 +434,20 @@ Investigate the effect of ALMPs in Switzerland
 - Heterogeneities with respect to gender, nationality, previous labour market success, and qualifications  
 :::
 
+<!---->
+
+## Programmes composition {.center}
+::: {.incremental}
+| **Programme**              | **Permanent Residents**  ||  **Temporary Residents**  | |  **$Ø$ Duration** |
+|-----------------------------|-------------------------|-----------|--------------------------|-----------|----------------|
+|                           |                           | **Share** |                           | **Share** |               |
+| No programme               | 51,020                 | 45.0%     | 14,624                  | 42.7%     |                |
+| Temporary Wage Subsidies   | 28,584                 | 25.2%     | 9,020                   | 26.4%     | 50 days        |
+| Basic courses              | 20,944                 | 18.5%     | 5,046                   | 14.7%     | 29 days        |
+| Employment programme       | 6,803                  | 6.0%      | 3,565                   | 10.4%     | 71 days        |
+| Training courses           | 5,978                  | 5.3%      | 1,974                   | 5.8%      | 41 days        |
+| **Total**                  | 113,329                |           | 34,229                  |           |                |
+
+**Note:** This table shows the absolute and relative number of individuals enrolled in each programme for the samples of permanent and temporary residents.
+
+:::

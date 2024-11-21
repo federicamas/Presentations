@@ -468,7 +468,6 @@ program participants
 </ul></li>
 </ul>
 </div>
-<div class="fragment">
 <div style="font-size: 0.7em;">
 <p>Notation</p>
 <ul>
@@ -479,7 +478,6 @@ program participants
 <li><span class="math inline">\(X\)</span>: All covariates (includes <span class="math inline">\(Z\)</span> and <span class="math inline">\(W\)</span>)</li>
 </ul>
 <!---->
-</div>
 </div></section>
 <section id="parameters-of-interest-1" class="slide level2 center">
 <h2>Parameters of interest</h2>
@@ -536,8 +534,8 @@ program participants
 <div>
 <p><strong>Policy Trees</strong> (Bodory, Mascolo and Lechner, 2024)</p>
 <ul>
-<li class="fragment">Decision tree designed to optimise treatment assignment policies</li>
-<li class="fragment">Multi-action policy learner algorithm based on Zhou, Athey and Wager (2023)</li>
+<li class="fragment">Decision tree designed to optimise treatment assignment policies (based on Zhou, Athey and Wager (2023))</li>
+<li class="fragment">Algorithm that conducts an exhaustive and recursive search over the variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment</li>
 <li class="fragment">Implemented in the MCF package</li>
 </ul>
 </div>
@@ -583,13 +581,61 @@ Results
 <li class="fragment"><strong>Employment Programme</strong>: More beneficial for women than men, no significant heterogeneity with respect to education</li>
 </ul>
 </div>
+</section>
+<section id="balanced-group-average-treatment-effects-2" class="slide level2 center">
+<h2>Balanced Group Average Treatment Effects</h2>
+<div>
+<table>
+<thead>
+<tr class="header">
+<th>Programme</th>
+<th>Education</th>
+<th>Labour history</th>
+<th>Past earnings</th>
+<th>Origin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>WS</strong></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="even">
+<td><strong>BC</strong></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="odd">
+<td><strong>TC</strong></td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="even">
+<td><strong>EP</strong></td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="fragment">
 <div>
 <ul>
-<li class="fragment">Effect heterogeneity driven by <strong>education</strong>, <strong>origin</strong>, and <strong>labour market history</strong></li>
+<li class="fragment"><strong>Labour market history</strong> and <strong>origin</strong> drive heterogeneity across all programmes</li>
+<li class="fragment">Significant effects for <strong>education</strong> suggest that, even with same skills, individuals of non-Swiss nationality benefit more from the programmes</li>
 </ul>
 </div>
-<!---->
+<!--- Effect heterogeneity driven by **education**, **origin**, and **labour market history**
+-->
 </div>
 </section>
 <section id="individualised-average-treatment-effects" class="slide level2 center">
@@ -610,12 +656,12 @@ Results
 <h2>K-means clustering</h2>
 <div>
 <ul>
-<li class="fragment">Group indivduals based on the size of their IATEs</li>
-<li class="fragment">K-means clustering (Arthur and Vassilvitskii, 2007) is an unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster</li>
+<li class="fragment">Unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster (Arthur and Vassilvitskii, 2007)</li>
+<li class="fragment">Clusters based on the size of their IATEs</li>
 </ul>
 </div>
 <div class="fragment">
-<p>Clusters that show greatest benefit:</p>
+<p>Clusters with larger IATEs, by programme, include:</p>
 <div>
 <ul>
 <li class="fragment"><p><strong>Wage Subsidy</strong>: older individuals with relatively high earnings</p></li>
@@ -627,16 +673,22 @@ Results
 <!---->
 </div>
 </section>
-<section id="policy-learning" class="slide level2 center">
-<h2>Policy Learning</h2>
+<section id="policy-trees" class="slide level2 center">
+<h2>Policy Trees</h2>
 <div>
 <ul>
-<li class="fragment"><strong>Simulate programme assignments</strong> to assess potential improvements, measuring gains in average months of employment</li>
-<li class="fragment"><strong>Compare simulated assignments</strong> to actual programme allocations and their corresponding average employment outcomes</li>
-<li class="fragment"><strong>Policy Tree</strong>: algorithm conducts an exhaustive and recursive search over the policy variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment</li>
+<li class="fragment"><strong>Simulate programme assignments</strong> to assess potential improvements with respect to observed and random allocations of unemployed</li>
+<li class="fragment"><strong>Evaluate simulated assignments</strong> measuring the gains in the average months of employment</li>
+</ul>
+</div>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment"><strong>Policy Variables</strong>: the same variables used for the heterogeneity analysis</li>
 </ul>
 </div>
 <!---->
+</div>
 </section>
 <section id="policy-trees-allocations" class="slide level2 center">
 <h2>Policy Trees Allocations</h2>
@@ -831,10 +883,95 @@ Background
 </li>
 </ul>
 </div>
-<p><img src="SEW-HSG_Logo_EN_RGB.svg" class="slide-logo"></p>
-<div class="footer footer-default">
-
+<!---->
 </div>
+</section>
+<section id="programmes-composition" class="slide level2 center">
+<h2>Programmes composition</h2>
+<div>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 21%">
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 9%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Programme</strong></th>
+<th><strong>Permanent Residents</strong></th>
+<th></th>
+<th><strong>Temporary Residents</strong></th>
+<th></th>
+<th><strong><span class="math inline">\(Ø\)</span> Duration</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><strong>Share</strong></td>
+<td></td>
+<td><strong>Share</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>No programme</td>
+<td>51,020</td>
+<td>45.0%</td>
+<td>14,624</td>
+<td>42.7%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Temporary Wage Subsidies</td>
+<td>28,584</td>
+<td>25.2%</td>
+<td>9,020</td>
+<td>26.4%</td>
+<td>50 days</td>
+</tr>
+<tr class="even">
+<td>Basic courses</td>
+<td>20,944</td>
+<td>18.5%</td>
+<td>5,046</td>
+<td>14.7%</td>
+<td>29 days</td>
+</tr>
+<tr class="odd">
+<td>Employment programme</td>
+<td>6,803</td>
+<td>6.0%</td>
+<td>3,565</td>
+<td>10.4%</td>
+<td>71 days</td>
+</tr>
+<tr class="even">
+<td>Training courses</td>
+<td>5,978</td>
+<td>5.3%</td>
+<td>1,974</td>
+<td>5.8%</td>
+<td>41 days</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>113,329</td>
+<td></td>
+<td>34,229</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> This table shows the absolute and relative number of individuals enrolled in each programme for the samples of permanent and temporary residents.</p>
+</div>
+
+<img src="SEW-HSG_Logo_EN_RGB.svg" class="slide-logo r-stretch"><div class="footer footer-default">
+
 </div>
 </section></section>
     </div>
