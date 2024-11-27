@@ -241,7 +241,7 @@ Evolution of ATEs for earnings in the 36 months after programme start for Perman
 . . .
 
 ::: {.incremental}
- - ATE for WS are CHF 2,059 over one year, for BC CHF 2,347 less
+ - ATE for WS are CHF 2,059, for BC CHF 2,347 less over one year
 :::
 
 
@@ -346,7 +346,7 @@ Clusters with larger IATEs, by programme, include:
 
 ## Policy Trees {.center}
 ::: {.incremental}
-- **Simulate programme assignments** to assess potential improvements with respect to observed and random allocations of unemployed
+- **Simulate programme assignments** to assess potential improvements with respect to observed allocations of unemployed
 - **Evaluate simulated assignments** measuring the gains in the average months of employment
 :::
 . . .
