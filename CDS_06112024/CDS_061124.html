@@ -340,7 +340,7 @@
 <section id="introduction" class="slide level2 center">
 <h2>Introduction</h2>
 <div>
-<p>What happens if you get unemployed in Switzerland? <img data-src="Swiss_ue_system.svg" style="display: block; margin: auto;;width:80.0%"></p>
+<p>What happens if a person becomes unemployed in Switzerland? <img data-src="Swiss_ue_system.svg" style="display: block; margin: auto;;width:80.0%"></p>
 </div>
 </section>
 <section id="introduction-1" class="slide level2 center">
@@ -359,7 +359,9 @@
 <section id="this-paper" class="slide level2 center">
 <h2>This paper</h2>
 <div>
-<p>Evaluate heterogeneities in the effectiveness of Swiss ALMPs using causal machine learning and a rich administrative data</p>
+<ul>
+<li class="fragment">Evaluate heterogeneities in the effectiveness of Swiss ALMPs and provide recomendation on the allocation to programmes using causal machine learning and a rich administrative data</li>
+</ul>
 </div>
 <div class="fragment">
 <div>
@@ -451,23 +453,21 @@ program participants
 </section>
 <section id="parameters-of-interest" class="slide level2 center">
 <h2>Parameters of interest</h2>
-<div>
-<p><strong>Treatment Evaluation</strong></p>
+<p><span style="color:#0a5f2d;"><strong>Treatment Evaluation</strong><span></span></span></p>
 <ul>
-<li class="fragment"><strong>ATE</strong> <span class="math inline">\(\,\,\,\, \implies \tau_{d} := \mathbb{E}[ Y^d - Y^{0}]\)</span>
+<li><strong>ATE</strong> <span class="math inline">\(\,\,\,\, \implies \tau_{d} := \mathbb{E}[ Y^d - Y^{0}]\)</span>
 <ul>
-<li class="fragment">average treatment effect for the whole population</li>
+<li>average treatment effect for the whole population</li>
 </ul></li>
-<li class="fragment"><strong>BGATE</strong> <span class="math inline">\(\implies \tau_{d}^B(z) := \mathbb{E}\left[\mathbb{E}[ \, Y^d - Y^{0} \, | \, Z = z, W]\right]\)</span>
+<li><strong>BGATE</strong> <span class="math inline">\(\implies \tau_{d}^B(z) := \mathbb{E}\left[\mathbb{E}[ \, Y^d - Y^{0} \, | \, Z = z, W]\right]\)</span>
 <ul>
-<li class="fragment">average treatment effect for a larger group of interest balanced for a subgorup of the covariates</li>
+<li>average treatment effect for a subgroup balanced for some covariates to ensure comparability</li>
 </ul></li>
-<li class="fragment"><strong>IATE</strong> <span class="math inline">\(\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \, Y^d - Y^{0} | X = x ]\)</span>
+<li><strong>IATE</strong> <span class="math inline">\(\,\,\implies \tau_{d} ( x ) := \mathbb{E}[ \, Y^d - Y^{0} | X = x ]\)</span>
 <ul>
-<li class="fragment">average treatment effect for a unit with specific values of covariates</li>
+<li>average treatment effect for a unit with specific values of covariates</li>
 </ul></li>
 </ul>
-</div>
 <div style="font-size: 0.7em;">
 <p>Notation</p>
 <ul>
@@ -481,29 +481,25 @@ program participants
 </div></section>
 <section id="parameters-of-interest-1" class="slide level2 center">
 <h2>Parameters of interest</h2>
-<div>
-<p><strong>Treatment Recommendation</strong></p>
+<p><span style="color:#0a5f2d;"><strong>Treatment Recommendation</strong><span></span></span></p>
 <ul>
-<li class="fragment"><strong>Optimal Policy rule</strong> <span class="math inline">\(\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)\)</span>, where <span class="math inline">\(Q(\pi) = \mathbb{E} [Y^{\pi(V)}]\)</span>
+<li><strong>Optimal Assignment rule</strong> <span class="math inline">\(\pi^*=\arg\max_{\pi \in \Pi} Q(\pi)\)</span>
 <ul>
-<li class="fragment">mapping from covariates to treatment which maximise the average outcome under the specific treatment</li>
+<li>mapping from covariates to treatment which maximise the average outcome under the specific treatment</li>
 </ul></li>
 </ul>
-</div>
-<div class="fragment">
 <div style="font-size: 0.7em;">
 <p>Notation</p>
 <ul>
-<li><span class="math inline">\(V\)</span> Policy variables, subset of the <span class="math inline">\(X\)</span> covariates<br>
+<li><span class="math inline">\(V\)</span>: Policy variables, subset of the <span class="math inline">\(X\)</span> covariates<br>
 </li>
-<li><span class="math inline">\(\pi(V)\)</span> Policy rule for conditional treatment choice</li>
-<li><span class="math inline">\(Y^{\pi(V)}]\)</span> Potential outcome under policy</li>
-<li><span class="math inline">\(Q(\pi)\)</span> Value function, average potential outcome under the policy</li>
+<li><span class="math inline">\(\pi(V)\)</span>: Policy rule for conditional treatment choice</li>
+<li><span class="math inline">\(Y^{\pi(V)}]\)</span>: Potential outcome under policy</li>
+<li><span class="math inline">\(Q(\pi) = \mathbb{E} [Y^{\pi(V)}]\)</span>: Value function, average potential outcome under the policy</li>
 </ul>
-</div>
 </div></section>
-<section id="indentification" class="slide level2 center">
-<h2>Indentification</h2>
+<section id="identification" class="slide level2 center">
+<h2>Identification</h2>
 <div>
 <ul>
 <li class="fragment"><strong>Conditional independence assumption</strong>
@@ -519,15 +515,14 @@ program participants
 </div>
 <!---->
 </section>
-<section id="estimator" class="slide level2 center">
-<h2>Estimator</h2>
+<section id="estimators" class="slide level2 center">
+<h2>Estimators</h2>
 <div>
 <p><strong>Modified Causal Forests (MCF)</strong> (Lechner 2018, Lechner and Mareckova, 2024)</p>
 <ul>
 <li class="fragment">Extension of CF (Wager and Athey, 2018) using a splitting rule accounting for heterogeneity and selection</li>
 <li class="fragment">Harmonized estimation and inference procedure</li>
 <li class="fragment">Non-parametric estimator</li>
-<li class="fragment">Package freely available on Github, MCFpy</li>
 </ul>
 </div>
 <div class="fragment">
@@ -535,8 +530,8 @@ program participants
 <p><strong>Policy Trees</strong> (Bodory, Mascolo and Lechner, 2024)</p>
 <ul>
 <li class="fragment">Decision tree designed to optimise treatment assignment policies (based on Zhou, Athey and Wager (2023))</li>
-<li class="fragment">Algorithm that conducts an exhaustive and recursive search over the variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations in a terminal leaf node to a single treatment</li>
-<li class="fragment">Implemented in the MCF package</li>
+<li class="fragment">Algorithm that conducts an exhaustive and recursive search over the variables and their values. It splits when the welfare within the leaves is maximised by assigning all observations to a treatment</li>
+<li class="fragment">Both implemented in the MCF python package</li>
 </ul>
 </div>
 <!---->
@@ -558,14 +553,21 @@ Results
 <p>Evolution of ATEs for earnings in the 36 months after programme start for Permanent Residents sample</p>
 <p><img data-src="earnings.svg" style="display: block; margin: auto;;width:65.0%"></p>
 </div>
+</div>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">ATE for WS are CHF 2,059 over one year, for BC CHF 2,347 less</li>
+</ul>
+</div>
 <!---->
 </div>
 </section>
 <section id="balanced-group-average-treatment-effects" class="slide level2 center">
-<h2>Balanced Group average Treatment effects</h2>
+<h2>Balanced Group average Treatment Effects</h2>
 <div class="fragment">
 <div>
-<p>Difference BGATE - ATE of <strong>Wage Subsidy</strong> with respect to non-participants for earnings in the third year after the programme start for Permanent Residents sample</p>
+<p>Difference BGATE - ATE of <strong>Wage Subsidy</strong> for earnings in the third year after the programme start for Permanent Residents sample</p>
 <p><img data-src="bgatemate_6.svg" style="display: block; margin: auto;;width:75.0%"></p>
 </div>
 <!---->
@@ -581,68 +583,40 @@ Results
 <li class="fragment"><strong>Employment Programme</strong>: More beneficial for women than men, no significant heterogeneity with respect to education</li>
 </ul>
 </div>
-</section>
-<section id="balanced-group-average-treatment-effects-2" class="slide level2 center">
-<h2>Balanced Group Average Treatment Effects</h2>
-<div>
-<table>
-<thead>
-<tr class="header">
-<th>Programme</th>
-<th>Education</th>
-<th>Labour history</th>
-<th>Past earnings</th>
-<th>Origin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>WS</strong></td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-<tr class="even">
-<td><strong>BC</strong></td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-<tr class="odd">
-<td><strong>TC</strong></td>
-<td>N</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-</tr>
-<tr class="even">
-<td><strong>EP</strong></td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="fragment">
 <div>
 <ul>
-<li class="fragment"><strong>Labour market history</strong> and <strong>origin</strong> drive heterogeneity across all programmes</li>
-<li class="fragment">Significant effects for <strong>education</strong> suggest that, even with same skills, individuals of non-Swiss nationality benefit more from the programmes</li>
+<li class="fragment"><strong>Labour market history</strong> and <strong>origin</strong> show the same patterns and are statistically significant, <strong>across all programmes</strong></li>
 </ul>
 </div>
-<!--- Effect heterogeneity driven by **education**, **origin**, and **labour market history**
+<!--
+## Balanced Group Average Treatment Effects {.center}
+::: {.incremental}
+
+| Programme | Education | Labour history | Past earnings | Origin |
+|-----------|--------|-------|-------|-------|
+| **WS**    |  Y    |    Y    |  Y  |    Y  | 
+| **BC**    |  Y      |  Y    |  Y     |  Y  | 
+| **TC**    |  N      |  Y    |  N     |  Y  | 
+| **EP**    |  N     |   Y    |  Y     |  Y |
+:::
+
+. . .
+
+::: {.incremental}
+- **Labour market history** and **origin** drive heterogeneity across all programmes
+:::
 -->
+<!--- Effect heterogeneity driven by **education**, **origin**, and **labour market history**
+- Significant effects for **education** suggest that, even with same skills, individuals of non-Swiss nationality benefit more from the programmes
+ -->
 </div>
 </section>
 <section id="individualised-average-treatment-effects" class="slide level2 center">
 <h2>Individualised Average Treatment Effects</h2>
 <div class="fragment">
 <div>
-<p><strong>Densities of the IATEs</strong> for earnings and employment in the third year after the programmes start for Permanent Residents sample</p>
+<p><strong>Densities of the IATEs</strong> for employment and earnings in the third year after the programmes start for Permanent Residents sample</p>
 <p><img data-src="iates_dens.svg" style="display: block; margin: auto;;width:75.0%"></p>
 <ul>
 <li class="fragment"><strong>K-means clustering</strong>: understand the different sub-groups based on covariates</li>
@@ -656,18 +630,22 @@ Results
 <h2>K-means clustering</h2>
 <div>
 <ul>
-<li class="fragment">Unsupervised machine learning method that partitions data into distinct clusters by minimizing the variance within each cluster (Arthur and Vassilvitskii, 2007)</li>
-<li class="fragment">Clusters based on the size of their IATEs</li>
+<li class="fragment">Unsupervised machine learning method that partitions data into distinct clusters (Arthur and Vassilvitskii, 2007)</li>
+<li class="fragment">Clusters based on the size of their IATEs <!--- Clusters with larger IATEs include individuals who benefit more from programmes--></li>
 </ul>
 </div>
 <div class="fragment">
 <p>Clusters with larger IATEs, by programme, include:</p>
 <div>
 <ul>
-<li class="fragment"><p><strong>Wage Subsidy</strong>: older individuals with relatively high earnings</p></li>
-<li class="fragment"><p><strong>Training Course</strong>: young individuals with higher levels of education and higher earnings</p></li>
-<li class="fragment"><p><strong>Basic Course</strong> and <strong>Employment Programme</strong>: young, female participants with low education levels, and lower earnings</p></li>
-<li class="fragment"><p>Individuals with <strong>non-Swiss nationality</strong> benefit more, from all the programmes</p></li>
+<li class="fragment"><strong>Wage Subsidy</strong>: older individuals with relatively high earnings</li>
+<li class="fragment"><strong>Training Course</strong>: young individuals with higher levels of education and higher earnings</li>
+<li class="fragment"><strong>Basic Course</strong> and <strong>Employment Programme</strong>: young, female participants with low education levels, and lower earnings</li>
+</ul>
+</div>
+<div>
+<ul>
+<li class="fragment">More individuals with <strong>non-Swiss nationality</strong>, for all the programmes</li>
 </ul>
 </div>
 <!---->
@@ -818,29 +796,34 @@ Conclusions
 <p>Investigate the effect of ALMPs in Switzerland</p>
 <div>
 <ul>
-<li class="fragment"><strong>Average Effects:</strong>
+<li class="fragment"><span style="color:#0a5f2d;"><strong>Average Effects:</strong></span>
 <ul>
-<li class="fragment"><strong>Permanent Residents</strong>: Mixed effects on employment and earnings; only WS shows positive, significant effects</li>
-<li class="fragment"><strong>Temporary Residents</strong>: Positive, significant effects for all programmes on the extensive margin</li>
+<li class="fragment"><strong>PERM</strong>: Mixed effects on employment and earnings; only WS shows positive, significant effects</li>
+<li class="fragment"><strong>TEMP</strong>: Positive, significant effects for all programmes on the extensive margin (4-29 days more of work)</li>
 </ul></li>
-<li class="fragment"><strong>Heterogeneous Effects:</strong>
+<li class="fragment"><span style="color:#0a5f2d;"><strong>Heterogeneous Effects:</strong></span>
 <ul>
-<li class="fragment">Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes <!--
+<li class="fragment"><strong>PERM</strong>: Individuals with lower education, non-Swiss citizenship and weaker labour market history benefit more from the programmes <!--
   - Driven by immigration background, education labour market history
   --></li>
-<li class="fragment">Statistically insignificant results for the smaller sample of Temporary Residents</li>
+<li class="fragment"><strong>TEMP</strong>: Statistically insignificant results for sample size</li>
 </ul></li>
-<li class="fragment"><strong>Simulated allocations:</strong>
+<li class="fragment"><span style="color:#0a5f2d;"><strong>Policy Trees Allocations:</strong></span>
 <ul>
-<li class="fragment">Increase assignments to WS for both samples</li>
-<li class="fragment">Use deeper policy trees in Permanent Residents, if the all the programmes need to be maintained</li>
+<li class="fragment">Increase assignments to WS for <strong>both samples</strong></li>
+<li class="fragment">Use deeper policy trees in <strong>PERM</strong>, if the all the programmes need to be maintained</li>
 </ul></li>
 </ul>
 </div>
+</section>
+<section id="thank-you-for-your-attention" class="slide level2">
+<h2>Thank you for your attention</h2>
 <div>
-<div style="text-align: right; position: relative; width: 110%; top: -700px; right: 20px;">
-<p><img data-src="qrcode.svg" style="width:10.0%"></p>
+<p>The paper is available here:</p>
+<div style="text-align: center;">
+  <img src="qrcode.svg" alt="QR Code" style="width: 25%;">
 </div>
+<p>The slides are available on Git: <a href="https://federicamas.github.io/Presentations/CDS_06112024/CDS_061124.html#/title-slide">https://federicamas.github.io/Presentations</a></p>
 </div>
 <!---->
 </section></section>
@@ -969,6 +952,74 @@ Background
 </table>
 <p><strong>Note:</strong> This table shows the absolute and relative number of individuals enrolled in each programme for the samples of permanent and temporary residents.</p>
 </div>
+</section>
+<section id="placebo-test" class="slide level2">
+<h2>Placebo test</h2>
+<div class="table-caption" data-font-size="large">
+<p><strong>Table: Average Treatment Effects (ATE) on 12 cumulative months employed</strong></p>
+</div>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Placebo Sample</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th style="text-align: left;"><strong>Permanent Residents</strong></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><strong>WS</strong></td>
+<td><strong>BC</strong></td>
+<td><strong>TC</strong></td>
+<td><strong>EP</strong></td>
+<td style="text-align: left;"><strong>WS</strong></td>
+<td><strong>BC</strong></td>
+<td><strong>TC</strong></td>
+<td><strong>EP</strong></td>
+</tr>
+<tr class="even">
+<td><strong>ATE</strong></td>
+<td>-0.01</td>
+<td>0.15</td>
+<td>-0.17</td>
+<td>0.27</td>
+<td style="text-align: left;">-0.64***</td>
+<td>-1.68***</td>
+<td>-1.56***</td>
+<td>-1.42***</td>
+</tr>
+<tr class="odd">
+<td><strong>(SE)</strong></td>
+<td>(0.12)</td>
+<td>(0.18)</td>
+<td>(0.26)</td>
+<td>(0.20)</td>
+<td style="text-align: left;">(0.05)</td>
+<td>(0.06)</td>
+<td>(0.10)</td>
+<td>(0.12)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> ATEs of participation in different programmes compared to non-participation for the placebo sample and the Permanent Residents sample. WS: Wage subsidy, BC: Basic Courses, TC: Training Courses, EP: Employment Programme. Standard errors are presented in parentheses. The symbol *, indicate the level of precision for each estimate, denoting if the p-value of a two-sided significance test is below 10%, 5%, and 1%.</p>
 
 <img src="SEW-HSG_Logo_EN_RGB.svg" class="slide-logo r-stretch"><div class="footer footer-default">
 
